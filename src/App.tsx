@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PokemonCard from './components/pokemonCard';
+import data from './components/PokemonData';
 
-function App() {
+const getPokemonData = () => {
+  return {
+    imagen: data.sprites.front_default,
+    numero: data.id,
+    nombre: data.name,
+    altura: data.height,
+    peso: data.weight,
+  }
+}
+
+const App = () => {
+  const pokemon = getPokemonData();
+  const { imagen, numero, nombre, altura, peso } = pokemon;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Pokemon App</h1>
+      <PokemonCard 
+        imagen={imagen}
+        numero={numero}
+        nombre={nombre}
+        altura={altura}
+        peso={peso}
+      />
     </div>
   );
 }
