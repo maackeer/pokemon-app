@@ -1,4 +1,5 @@
 import React from 'react';
+import "./pokemonCard.css";
 
 type PokemonCardProps = {
   imagen: string,
@@ -13,8 +14,8 @@ const PokemonCard = (props: PokemonCardProps) => {
   const { imagen, numero, nombre, altura, peso } = props;
 
   return (
-    <div>
-      <div>{imagen}</div>
+    <div className="card">
+      <img src={imagen} /> 
       <div>{numero}</div>
       <div>{nombre}</div>
       <div>{altura}</div>
