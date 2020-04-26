@@ -1,31 +1,59 @@
 import React from 'react';
 import PokemonCard from './components/pokemonCard';
 import data from './components/PokemonData';
+import './App.scss';
+import { getPokemonId } from './utils/pokemonIdConverter';
 
-const getPokemonData = () => {
+type PokemonType = {
+  slot: number,
+  type: {
+    name: string,
+    url: string,
+  },
+}
+
+type PokemonCardProps = {
+  imagen: string,
+  numero: string,
+  nombre: string,
+  tipos: PokemonType[],
+};
+
+const getPokemonData = (pokemonId: number) => {
   return {
-    imagen: data.sprites.front_default,
-    numero: data.id,
+    imagen: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${getPokemonId(pokemonId)}.png`,
+    numero: getPokemonId(pokemonId),
     nombre: data.name,
-    altura: data.height,
-    peso: data.weight,
+    tipos: data.types,
   }
 }
 
-const App = () => {
-  const pokemon = getPokemonData();
-  const { imagen, numero, nombre, altura, peso } = pokemon;
+const renderPokemonCards = (numeroPokemons: number) => {
+  const pokemonCards = [];
 
+  for (let i = 0; i < numeroPokemons; i++) {
+    const pokemon = getPokemonData(i + 1)
+
+    pokemonCards.push(
+      <PokemonCard 
+        imagen={pokemon.imagen}
+        numero={pokemon.numero}
+        nombre={pokemon.nombre}
+        tipos={pokemon.tipos}
+      />
+    )
+  }
+
+  return pokemonCards;
+}
+
+const App = () => {
   return (
     <div>
       <h1>Pokemon App</h1>
-      <PokemonCard 
-        imagen={imagen}
-        numero={numero}
-        nombre={nombre}
-        altura={altura}
-        peso={peso}
-      />
+      <div className="pokemon-card-wrapper">
+        { renderPokemonCards(100) }
+      </div>
     </div>
   );
 }

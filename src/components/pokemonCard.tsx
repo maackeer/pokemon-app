@@ -1,25 +1,39 @@
 import React from 'react';
-import "./pokemonCard.css";
+import "./pokemonCard.scss";
+
+type PokemonType = {
+  slot: number,
+  type: {
+    name: string,
+    url: string,
+  },
+}
 
 type PokemonCardProps = {
   imagen: string,
-  numero: number,
+  numero: string,
   nombre: string,
-  altura: number,
-  peso: number,
+  tipos: PokemonType[],
 };
 
 // arrow-function o funcion flecha
 const PokemonCard = (props: PokemonCardProps) => {
-  const { imagen, numero, nombre, altura, peso } = props;
+  const { imagen, numero, nombre, tipos } = props;
 
   return (
     <div className="card">
-      <img src={imagen} /> 
-      <div>{numero}</div>
-      <div>{nombre}</div>
-      <div>{altura}</div>
-      <div>{peso}</div>
+      <div className="pokemon-image">
+        <img src={imagen} /> 
+      </div>
+      <div className="pokemon-number">No. {numero}</div>
+      <div className="pokemon-name">{nombre}</div>
+      <div className="pokemon-types">
+        {
+          tipos.map(tipo => 
+            <span className={`pokemon-type ${tipo.type.name}`}>{tipo.type.name}</span>
+          )
+        }
+      </div>  
     </div>
   );
 }
