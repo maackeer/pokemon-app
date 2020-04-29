@@ -1,0 +1,54 @@
+.card {
+    display: block;
+    float: left;
+    // border: 1px solid #ccc; // borde de la carta
+    // border-radius: 5px; // puntas curveadas
+    width: 20%; // ancho
+    background-color: white; // color de fondo
+
+    margin: 8px;
+
+    .pokemon-image {
+        background-color: rgb(233, 230, 230);
+        border-radius: 5px;
+
+        img {
+            display: flex;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    .pokemon-number {
+        margin-top: 4px;
+        color: gray;
+    }
+
+    .pokemon-name {
+        margin-top: 8px;
+        font-size: 24px;
+    }
+
+    .pokemon-types {
+        margin-top: 8px;
+
+        .pokemon-type {
+            border-radius: 5px;
+            padding: 5px;
+            margin-right: 4px;
+
+            &.poison {
+                background-color: rebeccapurple;
+            }
+
+            &.grass {
+                background-color: seagreen;
+            }
+
+            &.fire {
+                background-color: orangered;
+            }
+        }
+    }
+}
