@@ -13,7 +13,7 @@ type PokemonCardProps = {
   imagen: string,
   numero: string,
   nombre: string,
-  tipos: PokemonType[],
+  tipos?: PokemonType[],
 };
 
 // arrow-function o funcion flecha
@@ -29,7 +29,7 @@ const PokemonCard = (props: PokemonCardProps) => {
       <div className="pokemon-name">{nombre}</div>
       <div className="pokemon-types">
         {
-          tipos.map(tipo => 
+          tipos && tipos.map(tipo => 
             <span className={`pokemon-type ${tipo.type.name}`}>{tipo.type.name}</span>
           )
         }
